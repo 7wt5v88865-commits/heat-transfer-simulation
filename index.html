@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heat Transfer Quest: UAE</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(135deg,#fff4d6,#dff4ff);color:#18324a}
+header{text-align:center;padding:25px 15px;background:#173b57;color:white}
+h1{margin:0;font-size:32px}.tag{margin-top:8px}
+nav{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:15px}
+button{padding:11px 16px;border:0;border-radius:20px;background:white;color:#173b57;font-weight:bold;cursor:pointer;box-shadow:0 2px 8px #0002}
+button.active{background:#f39b35;color:white}
+main{max-width:950px;margin:auto;padding:10px}
+.card{background:#ffffffee;border-radius:24px;padding:22px;box-shadow:0 8px 30px #0002}
+h2{margin-top:0}.scene{height:330px;position:relative;overflow:hidden;border-radius:20px;background:linear-gradient(#aee2ff,#eaf9ff 62%,#e4c17b 63%);margin-bottom:18px}
+.fact{padding:14px;border-radius:15px;background:#f3f7fa;font-size:17px;line-height:1.45}
+.sun{position:absolute;right:55px;top:30px;width:75px;height:75px;border-radius:50%;background:#ffd13b;box-shadow:0 0 35px #ffd13b}
+.ray{position:absolute;right:85px;top:100px;width:5px;height:170px;background:#f3a126;transform:rotate(22deg);animation:ray 1s infinite alternate}
+.r2{right:140px;animation-delay:.3s}.r3{right:195px;animation-delay:.6s}
+@keyframes ray{to{opacity:.2;transform:rotate(22deg) translateY(25px)}}
+.car{position:absolute;left:20%;bottom:42px;width:470px;height:105px;background:#536b78;border-radius:45px 70px 18px 18px}
+.win{position:absolute;top:15px;left:95px;width:125px;height:55px;background:#c9f0ff;transform:skew(-12deg)}
+.win2{position:absolute;top:15px;left:240px;width:125px;height:55px;background:#c9f0ff;transform:skew(12deg)}
+.seat{position:absolute;left:180px;bottom:8px;width:135px;height:50px;background:#b9683d;border-radius:22px}
+.cup{position:absolute;left:35%;bottom:48px;width:190px;height:125px;background:#b96d38;border:8px solid #87502b;border-radius:8px 8px 28px 28px}
+.tea{position:absolute;left:calc(35% + 30px);bottom:158px;width:130px;height:18px;background:#4b291b;border-radius:50%}
+.spoon{position:absolute;left:55%;bottom:50px;width:11px;height:220px;background:#bbb;border-radius:10px;transform:rotate(6deg);transform-origin:bottom;animation:warm 1.2s infinite alternate}
+@keyframes warm{to{filter:brightness(1.45)}}
+.pot{position:absolute;left:32%;bottom:45px;width:300px;height:145px;background:#65737a;border-radius:12px 12px 40px 40px}
+.water{position:absolute;left:calc(32% + 18px);bottom:125px;width:264px;height:70px;background:#6ec1e8;border-radius:50%;overflow:hidden}
+.current{position:absolute;width:55px;height:55px;border:6px solid #ef7f25;border-left-color:transparent;border-bottom-color:transparent;border-radius:50%;animation:spin 1.3s linear infinite}
+.c1{left:42%;bottom:120px}.c2{left:55%;bottom:100px;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.pill{display:inline-block;padding:6px 10px;border-radius:15px;background:#fff0d9;color:#9a5513;font-weight:bold}
+</style>
+</head>
+<body>
+<header><h1>🔥 Heat Transfer Quest</h1><div class="tag">Discover how heat travels in everyday UAE life</div></header>
+<nav>
+<button class="active" onclick="load(0)">🥤 Conduction</button>
+<button onclick="load(1)">🍲 Convection</button>
+<button onclick="load(2)">☀️ Radiation</button>
+</nav>
+<main><div class="card" id="app"></div></main>
+<script>
+const data=[
+["🥤 Conduction","Karak + Metal Spoon","Heat travels through direct contact. The hot karak transfers energy to the metal spoon, making the spoon warmer.","<div class='scene'><div class='cup'></div><div class='tea'></div><div class='spoon'></div><div class='pill' style='position:absolute;left:25px;top:25px'>HOT KARAK</div><div class='pill' style='position:absolute;right:25px;bottom:25px'>Heat → spoon</div></div>"],
+["🍲 Convection","Hot Soup / Water","Heat travels because the fluid moves. Warm liquid rises while cooler liquid sinks, forming a convection current.","<div class='scene'><div class='pot'></div><div class='water'></div><div class='current c1'></div><div class='current c2'></div><div class='pill' style='position:absolute;left:25px;top:25px'>WARM ↑</div><div class='pill' style='position:absolute;right:25px;top:25px'>COOL ↓</div></div>"],
+["☀️ Radiation","UAE Sun + Car Seat","Heat travels from the Sun as electromagnetic waves. It does not need direct contact or moving fluid.","<div class='scene'><div class='sun'></div><div class='ray'></div><div class='ray r2'></div><div class='ray r3'></div><div class='car'><div class='win'></div><div class='win2'></div><div class='seat'></div></div><div class='pill' style='position:absolute;left:25px;top:25px'>SUN → SEAT</div></div>"]
+];
+function load(i){
+document.querySelectorAll("button").forEach((b,j)=>b.classList.toggle("active",i==j));
+let x=data[i];document.getElementById("app").innerHTML=`<h2>${x[0]}</h2><h3>${x[1]}</h3>${x[3]}<div class="fact"><b>How it works:</b> ${x[2]}</div>`;
+}
+load(0);
+</script>
+</body>
+</html>
